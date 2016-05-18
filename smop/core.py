@@ -1,14 +1,16 @@
+from __future__ import absolute_import
 # SMOP compiler runtime support library
 # Copyright 2014 Victor Leikehman
 
 # MIT license
 
-import __builtin__
+import six.moves.builtins
 
 import numpy
 from numpy.fft import fft2
 from numpy.linalg import inv
 from numpy.linalg import qr  as _qr
+from six.moves import range
 try:
     from scipy.linalg import schur as _schur
 except ImportError:
@@ -493,7 +495,7 @@ def isscalar(a):
 
 def length(a):
     try:
-        return __builtin__.max(np.asarray(a).shape)
+        return six.moves.builtins.max(np.asarray(a).shape)
     except ValueError:
         return 1
 
@@ -616,7 +618,7 @@ def size_equal(a,b):
             return False
     return True
 
-sort = __builtin__.sorted
+sort = six.moves.builtins.sorted
 
 def strcmp(a,b):
     return str(a) == str(b)

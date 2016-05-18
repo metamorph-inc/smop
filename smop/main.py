@@ -1,14 +1,16 @@
+from __future__ import absolute_import
 # SMOP compiler -- Simple Matlab/Octave to Python compiler
 # Copyright 2011-2013 Victor Leikehman
 
 import smop.version
-import sys,cPickle,glob,os
+import sys,six.moves.cPickle,glob,os
 import getopt,re
-import lexer,parse,resolve,backend,options,graphviz
+from . import lexer,parse,resolve,backend,options,graphviz
 import smop.node as node
 import networkx as nx
 from smop.runtime import *
 from smop.core import *
+from six.moves import input
 #from version import __version__
 __version__ = smop.version.__version__
 
@@ -61,7 +63,7 @@ def main():
                                         "verbose",
                                         "version",
                                        ])
-    except getopt.GetoptError, err:
+    except getopt.GetoptError as err:
         # print help information and exit:
         print str(err) # will print something like "option -a not recognized"
         usage()
@@ -107,17 +109,17 @@ def main():
         print "? for help"
         while 1:
             try:
-                buf = raw_input("octave: ")
+                buf = input("octave: ")
                 if not buf:
                     continue
                 while buf[-1] == "\\":
-                    buf = buf[:-1] + "\n" + raw_input("... ")
+                    buf = buf[:-1] + "\n" + input("... ")
                 if buf[0] == '?':
                     print main.__doc__
                     continue
                 if buf[0] == "!":
                     try:
-                        exec buf[1:]
+                        exec(buf[1:])
                     except Exception as ex:
                         print ex
                     continue
@@ -135,7 +137,7 @@ def main():
                 try:
                     print eval(s)
                 except SyntaxError:
-                    exec s
+                    exec(s)
             except EOFError:
                 return
             except Exception as ex:

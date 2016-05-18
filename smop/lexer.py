@@ -1,11 +1,13 @@
+from __future__ import absolute_import
 # SMOP compiler -- Simple Matlab/Octave to Python compiler
 # Copyright 2011-2014 Victor Leikehman
 
 import sys
 import re
 from zlib import adler32
-import lex
-from lex import TOKEN
+from . import lex
+from .lex import TOKEN
+from six.moves import input
 
 class IllegalCharacterError(Exception):
     pass
@@ -322,11 +324,11 @@ if __name__ == "__main__":
     lexer = new()
     try:
         while 1:
-            line = raw_input("=>> ")
+            line = input("=>> ")
             if not line:
                 continue
             while line[-1] == "\\":
-                line = line[:-1] + raw_input("... ")
+                line = line[:-1] + input("... ")
             print len(line), [c for c  in line]
             lexer.input(line)
             for tok in lexer:

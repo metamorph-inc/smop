@@ -1,7 +1,10 @@
-import parse,sys
+from __future__ import absolute_import
+import sys
 import smop.node as node
-from node import extend
+from .node import extend
+from . import parse
 import networkx as nx
+from six.moves import range
 
 
 

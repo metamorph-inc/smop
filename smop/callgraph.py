@@ -1,4 +1,5 @@
-import parse
+from __future__ import absolute_import
+from . import parse
 import sys
 import networkx as nx
 import smop.node as node

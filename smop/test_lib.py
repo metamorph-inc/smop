@@ -1,12 +1,14 @@
+from __future__ import absolute_import
 import unittest
 import smop.parse as parse
 import smop.backend as backend
 import smop.resolve as resolve
 import numpy
+import six
 
 
 def _make_arrays(d):
-    return {k: numpy.asarray(d) if isinstance(d, list) else d for k, d in d.iteritems()}
+    return {k: numpy.asarray(d) if isinstance(d, list) else d for k, d in six.iteritems(d)}
 
 
 class TestLib(unittest.TestCase):

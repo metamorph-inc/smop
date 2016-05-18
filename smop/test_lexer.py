@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 import unittest
-import lexer
+from . import lexer
 
 
 class TestLexer(unittest.TestCase):
@@ -117,41 +118,41 @@ class TestLexer(unittest.TestCase):
     def test110(self):
         "Quotes and backslashes in matlab strings"
         self.lexer.input(r"'hello''world'")
-        tok = self.lexer.next()
+        tok = next(self.lexer)
         self.assertEqual(tok.value,r"hello'world")
 
     @unittest.skip('broken')
     def broken_test112(self):
         "Quotes and backslashes in octave strings"
         self.lexer.input(r'"hello\"world"')
-        tok = self.lexer.next()
+        tok = next(self.lexer)
         self.assertEqual(tok.value,r'hello"world')
 
     def test114(self):
         "Quotes and backslashes in octave strings"
         self.lexer.input('''"hello\
 world"''')
-        tok = self.lexer.next()
+        tok = next(self.lexer)
         self.assertEqual(tok.value,r'helloworld')
 
     @unittest.skip('broken')
     def broken_test116(self):
         "Quotes and backslashes in octave strings"
         self.lexer.input(r'"hello\n"')
-        tok = self.lexer.next()
+        tok = next(self.lexer)
         self.assertEqual(tok.value,'hello\n')
 
     @unittest.skip('broken')
     def broken_test118(self):
         "Quotes and backslashes in octave strings"
         self.lexer.input(r'"hello\\world"')
-        tok = self.lexer.next()
+        tok = next(self.lexer)
         self.assertEqual(tok.value,r'hello\world')
 
     def test119(self):
         "Quotes and backslashes in octave strings"
         self.lexer.input(r'"hello""world"')
-        tok = self.lexer.next()
+        tok = next(self.lexer)
         self.assertEqual(tok.value,r'hello"world')
 
     def test120(self):

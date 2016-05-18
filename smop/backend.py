@@ -9,12 +9,13 @@ func decl:  nargout=1 must be declared if function may return
             more than one return value.  Otherwise optional.
 return value:  return (x,y,z)[:nargout] or return x
 """
+from __future__ import absolute_import
 
 import logging
 logger = logging.getLogger(__name__)
 import smop.node as node
-import options
-from node import extend
+from . import options
+from .node import extend
 
 indent = " "*4
 

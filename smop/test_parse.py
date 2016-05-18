@@ -1,5 +1,6 @@
+from __future__ import absolute_import
 import unittest
-import parse
+from . import parse
 import smop.node as node
 
 class TestParse(unittest.TestCase):

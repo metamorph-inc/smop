@@ -2,13 +2,14 @@
  SMOP compiler -- Simple Matlab/Octave to Python compiler
  Copyright 2011-2013 Victor Leikehman
 """
+from __future__ import absolute_import
 
 import inspect
 import sys
 import smop.node as node
 extend = node.extend
 
-import options,parse
+from . import options,parse
 
 ZERO = node.number(0)
 

@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 # -----------------------------------------------------------------------------
 # ply: yacc.py
 #
@@ -66,6 +67,7 @@ import os.path
 import inspect
 import base64
 import warnings
+import six
 
 __version__    = '3.8'
 __tabversion__ = '3.8'
@@ -1982,7 +1984,7 @@ class LRTable(object):
 
     def read_pickle(self, filename):
         try:
-            import cPickle as pickle
+            import six.moves.cPickle as pickle
         except ImportError:
             import pickle
 
@@ -2822,7 +2824,7 @@ del _lr_goto_items
 
     def pickle_table(self, filename, signature=''):
         try:
-            import cPickle as pickle
+            import six.moves.cPickle as pickle
         except ImportError:
             import pickle
         with open(filename, 'wb') as outf:

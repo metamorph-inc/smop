@@ -3,10 +3,12 @@ Given node.function instance, apply it
 to argument list, such as ["i","d"]
 and return the result.
 """
+from __future__ import absolute_import
 
 import smop.node as node
-import options
-from node import extend,exceptions
+from . import options
+from .node import extend,exceptions
+from six.moves import zip
 
 callstack = set()
 
@@ -22,7 +24,7 @@ def apply(self,args,symtab):
     params = [(u.name,u.lineno) for u in self.head.args]
     if len(args) < len(self.head.args): # head.args are formal params
         args += [''] * (len(self.head.args)-len(args))
-    symtab.update(zip(params,args))
+    symtab.update(list(zip(params,args)))
     self.body._typeof(symtab)
     #return [symtab[u.name,u.lineno] for u in self.ret]
 #    for u in node.postorder(self):

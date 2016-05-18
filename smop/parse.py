@@ -1,3 +1,4 @@
+from __future__ import absolute_import
 # SMOP compiler -- Simple Matlab/Octave to Python compiler
 # Copyright 2011-2014 Victor Leikehman
 
@@ -8,15 +9,15 @@ import operator
 import sys
 
 import re
-import yacc
+from . import yacc
 
-from lexer import tokens
-import lexer
+from .lexer import tokens
+from . import lexer
 
 #import builtins
 import smop.node as node
 #from node import *
-import resolve,options
+from . import resolve,options
 
 # ident properties (set in parse.py)
 # ----------------------------------
@@ -762,7 +763,8 @@ def parse(buf,filename=""):
         new_lexer = lexer.new()
         p = parser.parse(buf,tracking=1,debug=0,lexer=new_lexer)
         return p
-    except lexer.IllegalCharacterError as (lineno,column,c):
+    except lexer.IllegalCharacterError as e:
+        (lineno,column,c) = e.args
         #import pdb; pdb.set_trace()
         print 'Error:%s:%s.%s:illegal character:%s' % (filename,lineno,column,c)
         return []
