@@ -11,5 +11,6 @@ runtime/
 .coverage
 cover/
 venv/
+venv_64/
 *.pyd
 smop/runtime.c
