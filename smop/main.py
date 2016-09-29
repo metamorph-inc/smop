@@ -5,7 +5,7 @@ from __future__ import absolute_import
 import smop.version
 import sys,six.moves.cPickle,glob,os
 import getopt,re
-from . import lexer,parse,resolve,backend,options,graphviz
+from smop import lexer,parse,resolve,backend,options,graphviz
 import smop.node as node
 import networkx as nx
 from smop.runtime import *
