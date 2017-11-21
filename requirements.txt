@@ -3,6 +3,7 @@
 numpy==1.9.2
 scipy==0.16.0
 Cython==0.24
+six==1.10.0
 networkx
 coverage
 nose
