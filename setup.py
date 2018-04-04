@@ -17,6 +17,9 @@ try:
 except:
     versionstring = "0.21"
 
+# generate parsetab.py
+import smop.parse
+
 setup(
     author = 'Victor Leikehman',
     author_email = 'victorlei@gmail.com',
@@ -29,11 +32,13 @@ setup(
     version = versionstring,
     entry_points = { 'console_scripts': [ 'smop = smop.main:main', ], },
     packages = ['smop'],
+    zip_safe = True,
     #package_dir = {'':'src'},
     #test_suite = "smop.testsuite.test_lexer",
     #include_package_data = True,
     #package_data = { 'smop': ['*.m', 'Makefile'], },
-    install_requires = ['numpy', 'scipy', 'networkx'],
+    install_requires = ['numpy', 'scipy', 'networkx', 'six'],
+    setup_requires = ['numpy', 'six'],
 
     ext_modules = # cythonize(["smop/solver.pyx", include_dirs = [numpy.get_include()],),
 
