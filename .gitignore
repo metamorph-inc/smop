@@ -5,6 +5,7 @@ a.py
 *.egg-info
 /smop/parser.out
 /smop/parsetab.py
+/smop/lextab.py
 dist/
 build/
 runtime/
@@ -14,3 +15,4 @@ venv/
 venv_64/
 *.pyd
 smop/runtime.c
+smop/version.py

@@ -17,6 +17,9 @@ try:
 except:
     versionstring = "0.21"
 
+# generate lextab.py
+import smop.lexer
+smop.lexer.new()
 # generate parsetab.py
 import smop.parse
 
